@@ -2,61 +2,51 @@ CREATE TABLE Department_Office
 (   
     Department_Office_ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
-	LocatedFloor INT NOT NULL CHECK (LocatedFloor IN (0,1,2,3)),
-	OpeningHours  VARCHAR(200) NOT NULL, 
-	RoomNumber VARCHAR(10),
-	NumberOfServices INT,
-	Website VARCHAR(50) 
+    LocatedFloor INT NOT NULL CHECK (LocatedFloor IN (0,1,2,3)),
+    OpeningHours  VARCHAR(200) NOT NULL, 
+    RoomNumber VARCHAR(10),
+    NumberOfServices INT,
+    Website VARCHAR(50) 
 );
-
-
 
 
 CREATE TABLE ServiceTable
 (   
     ServiceID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
-	Department_Office_ID INT NOT NULL,
-	ServiceDescription VARCHAR(500),
-	Website VARCHAR(50), 
-
-	CONSTRAINT ServiceTable_FK FOREIGN KEY (Department_Office_ID) REFERENCES Department_Office (Department_Office_ID)
+    Department_Office_ID INT NOT NULL,
+    ServiceDescription VARCHAR(500),
+    Website VARCHAR(50), 
+    
+    CONSTRAINT ServiceTable_FK FOREIGN KEY (Department_Office_ID) REFERENCES Department_Office (Department_Office_ID)
 );
-
-
-
-
 
 
 CREATE TABLE EventTable
 (   
     EventID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
-	StartDateTime DATETIME NOT NULL,
-	EndDateTime DATETIME NOT NULL,
-	LocatedFloor INT NOT NULL CHECK (LocatedFloor IN (0,1,2,3)),
-	RoomNumber VARCHAR(10),
-	EventDescription VARCHAR(500),
-	Department_Office_ID INT,
-	Website VARCHAR(50), 
-	
-	CONSTRAINT EventTable_FK FOREIGN KEY (Department_Office_ID) REFERENCES Department_Office (Department_Office_ID)
+    StartDateTime DATETIME NOT NULL,
+    EndDateTime DATETIME NOT NULL,
+    LocatedFloor INT NOT NULL CHECK (LocatedFloor IN (0,1,2,3)),
+    RoomNumber VARCHAR(10),
+    EventDescription VARCHAR(500),
+    Department_Office_ID INT,
+    Website VARCHAR(50), 
+    
+    CONSTRAINT EventTable_FK FOREIGN KEY (Department_Office_ID) REFERENCES Department_Office (Department_Office_ID)
 );
-
-
 
 
 CREATE TABLE Facility
 (   
     FacilityID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
-	LocatedFloor INT NOT NULL CHECK (LocatedFloor IN (0,1,2,3)),
-	RoomNumber VARCHAR(10),
-	FacilityDescription VARCHAR(500),
-	OpeningHours VARCHAR(200),
+    LocatedFloor INT NOT NULL CHECK (LocatedFloor IN (0,1,2,3)),
+    RoomNumber VARCHAR(10),
+    FacilityDescription VARCHAR(500),
+    OpeningHours VARCHAR(200),
 );
-
-
 
 
 CREATE TABLE AppUser
@@ -66,24 +56,23 @@ CREATE TABLE AppUser
 );
 
 
-
-
 CREATE TABLE UserActivity
 (   
     UserActivityID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	ActivityDateTime DATETIME DEFAULT getdate() NOT NULL,
-	UserID INT,
-	Department_Office_ID INT,
-	ServiceID INT,
-	EventID INT,
-	FacilityID INT,
+    ActivityDateTime DATETIME DEFAULT getdate() NOT NULL,
+    UserID INT,
+    Department_Office_ID INT,
+    ServiceID INT,
+    EventID INT,
+    FacilityID INT,
 	
-	CONSTRAINT UserActivity_FK_UserID FOREIGN KEY (UserID) REFERENCES AppUser (UserID),
-	CONSTRAINT UserActivity_FK_Department_Office_ID FOREIGN KEY (Department_Office_ID) REFERENCES Department_Office (Department_Office_ID),
-	CONSTRAINT UserActivity_FK_ServiceID FOREIGN KEY (ServiceID) REFERENCES ServiceTable (ServiceID),
-	CONSTRAINT UserActivity_FK_EventID FOREIGN KEY (EventID) REFERENCES EventTable (EventID),
-	CONSTRAINT UserActivity_FK_FacilityID FOREIGN KEY (FacilityID) REFERENCES Facility (FacilityID)
+    CONSTRAINT UserActivity_FK_UserID FOREIGN KEY (UserID) REFERENCES AppUser (UserID),
+    CONSTRAINT UserActivity_FK_Department_Office_ID FOREIGN KEY (Department_Office_ID) REFERENCES Department_Office (Department_Office_ID),
+    CONSTRAINT UserActivity_FK_ServiceID FOREIGN KEY (ServiceID) REFERENCES ServiceTable (ServiceID),
+    CONSTRAINT UserActivity_FK_EventID FOREIGN KEY (EventID) REFERENCES EventTable (EventID),
+    CONSTRAINT UserActivity_FK_FacilityID FOREIGN KEY (FacilityID) REFERENCES Facility (FacilityID)
 );
+
 
 -- Insert Data into Department/Office Table
 INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Career Services', 2, 'Monday - Friday: 9:00 am - 5:00 pm; Saturday - Sunday: Closed');
@@ -91,7 +80,7 @@ INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Cash Op
 INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Office of Multicultural Affairs', 1, 'Monday - Friday: 9:00 am - 5:00 pm; Saturday - Sunday: Closed');
 INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Office of Student Activites', 1, 'Monday - Friday: 9:00 am - 5:00 pm; Saturday - Sunday: Closed');
 INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Parents Office', 2, 'Monday - Friday: 9:00 am - 5:00 pm; Saturday - Sunday: Closed');
-INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Schine Box Office', 2, 'Monday – Thursday: 11:00 am - 5:00 pm; Friday - Saturday: 12:00 pm - 5:00 pm; Sunday: Closed');
+INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Schine Box Office', 2, 'Monday â€“ Thursday: 11:00 am - 5:00 pm; Friday - Saturday: 12:00 pm - 5:00 pm; Sunday: Closed');
 INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Schine Copy Center', 1, 'Monday - Friday: 9:00 am - 5:00 pm; Saturday - Sunday: Closed');
 INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Schine Dining', 2, 'Monday - Friday: 7:30 am - 7:00 pm; Saturday - Sunday: 11:00 am - 5:00 pm');
 INSERT INTO Department_Office(Name, LocatedFloor, OpeningHours) VALUES ('Schine Information Desk', 2, 'Monday - Friday: 9:00 am - 5:00 pm; Saturday - Sunday: Closed');
@@ -218,9 +207,6 @@ INSERT INTO UserActivity(UserID, EventID) VALUES (7, 7);
 INSERT INTO UserActivity(UserID, EventID) VALUES (9, 1);
 
 
-
-
-
 select * from Department_Office
 select * from servicetable
 select * from EventTable
@@ -229,9 +215,7 @@ select * from AppUser
 select * from UserActivity
 
 
-
 -- What departments or offices are housed in Schine Student Center?
-
 CREATE VIEW Department_Office_Admin_V as
 SELECT *
 FROM Department_Office;
@@ -247,13 +231,12 @@ SELECT * FROM Department_Office_User_V;
 
 DROP VIEW Service_Admin_V;
 
--- What services are provided in Schine Student Center? (join name)
 
+-- What services are provided in Schine Student Center? (join name)
 CREATE VIEW Service_Admin_V as
 SELECT do.Department_Office_ID, do.Name 'Department/Office Name', s.ServiceID, s.Name 'Service Name', s.ServiceDescription, s.Website
 FROM ServiceTable s 
 LEFT JOIN Department_Office do ON s.Department_Office_ID = do.Department_Office_ID;
-
 
 SELECT * FROM Service_Admin_V;
 
@@ -267,16 +250,14 @@ SELECT * FROM Service_User_V;
 
 
 -- What services are provided by certain department/office?
-
 -- What events are hosted in Schine Student Center? 
-
 CREATE VIEW Event_Admin_V as
 SELECT e.EventID, e.Name 'Event Name', e.StartDateTime, e.EndDateTime, e.LocatedFloor, e.RoomNumber, e.EventDescription, e.Department_Office_ID, do.Name 'Department/Office Name', e.Website
 FROM EventTable e
 LEFT JOIN Department_Office do ON e.Department_Office_ID = do.Department_Office_ID;
 
-
 SELECT * FROM Event_Admin_V;
+
 
 CREATE VIEW Event_User_V as
 SELECT e.StartDateTime, e.Name 'Event Name', e.EndDateTime, e.LocatedFloor, e.RoomNumber, e.EventDescription, do.Name 'Hosting Department/Office', e.Website
@@ -285,12 +266,11 @@ LEFT JOIN Department_Office do ON e.Department_Office_ID = do.Department_Office_
 
 SELECT * FROM Event_User_V;
 
--- What facilites are available in Schine Student Center? 
 
+-- What facilites are available in Schine Student Center? 
 CREATE VIEW Facility_Admin_V as
 SELECT * 
 FROM Facility;
-
 
 SELECT * FROM Facility_Admin_V;
 
@@ -302,16 +282,11 @@ FROM Facility f;
 SELECT * FROM Facility_User_V;
 
 
-
-
 CREATE VIEW AppUser_Admin_V as
 SELECT * 
 FROM AppUser;
 
-
 SELECT * FROM AppUser_Admin_V;
-
-
 
 
 CREATE VIEW UserActivity_Admin_V as
@@ -321,17 +296,10 @@ FROM UserActivity;
 SELECT * FROM UserActivity_Admin_V;
 
 
-
 SELECT s.Name
 FROM ServiceTable s
 LEFT JOIN Department_Office do ON s.Department_Office_ID = do.Department_Office_ID
 WHERE do.Name = 'Career Services';
-
-
-
-
-
-
 
 
 -- Procedure: Count the 'Number of Services' in Department/Office Table
@@ -347,10 +315,9 @@ BEGIN
 	WHERE Department_Office.Department_Office_ID = New.ID
 END;
 
+
 -- Call the Procedure
 EXEC Department_Office_Number_of_Services;
-
-
 
 
 -- Trigger: automatically update Department/Office Table's "Number of Services" after Service information is modified.
@@ -370,8 +337,6 @@ BEGIN
 END;
 
 
-
-
 -- Test the Trigger
 SELECT * FROM Department_Office;
 
@@ -381,8 +346,6 @@ SELECT * FROM Department_Office;
 
 
 -- HOT Search Ranking of Departments/offices
-
-
 SELECT DO.Name, New.[Number of Searches]
 FROM Department_Office DO
 INNER JOIN (SELECT Department_Office_ID 'ID', COUNT(UserActivityID) 'Number of Searches'
@@ -395,10 +358,6 @@ ORDER BY  New.[Number of Searches] DESC;
 
 
 -- HOT Search Ranking of Services
-
-
-
-
 SELECT ST.Name, New.[Number of Searches]
 FROM ServiceTable ST
 INNER JOIN (SELECT ServiceID 'ID', COUNT(UserActivityID) 'Number of Searches'
@@ -410,16 +369,7 @@ ON sT.ServiceID = New.ID
 ORDER BY  New.[Number of Searches] DESC;
 
 
-
-
-
-
 -- HOT Search Ranking of Events
-
-
-
-
-
 SELECT ET.Name, New.[Number of Searches], ET.StartDateTime
 FROM EventTable ET
 INNER JOIN (SELECT EventID 'ID', COUNT(UserActivityID) 'Number of Searches'
@@ -431,16 +381,7 @@ ON ET.EventID = New.ID
 ORDER BY  New.[Number of Searches] DESC;
 
 
-
-
-
-
 -- HOT Search Ranking of Facilities
-
-
-
-
-
 SELECT F.Name, New.[Number of Searches]
 FROM facility F
 INNER JOIN (SELECT FacilityID 'ID', COUNT(UserActivityID) 'Number of Searches'
