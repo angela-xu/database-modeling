@@ -1,4 +1,4 @@
-# Database Modeling
+# Database Modeling | SQL, Access
 ## Introduction
 In this repository, a database management system of the Schine Student Center for Syracuse University indoor & outdoor application was created.
 * Code was written in SQL.
