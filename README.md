@@ -13,6 +13,9 @@ In this repository, a database management system of the Schine Student Center fo
 
 ![trigger](https://cloud.githubusercontent.com/assets/19921232/17567683/384a265c-5ef5-11e6-8230-6aee1c18cff3.png)
 
+## Deliverables
+Project proposal, report and demonstration slides are available upon request.
+
 ## Installation and Usages
 * Download and run sql_scripts.sql in MS SQL server.
 * Download and run schine_student_center_DBMS.accdb in MS Access.
