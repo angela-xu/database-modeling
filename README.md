@@ -1,6 +1,6 @@
 # Database Modeling | SQL, Access, Visio
 ## Introduction
-In this repository, a database management system of the Schine Student Center for Syracuse University indoor & outdoor application was created.
+In this repository, a database of the Schine Student Center for Syracuse University indoor & outdoor application was created.
 * Code was written in SQL.
 * Project was implemented in MS SQL Server and MS Access.
 * Four files are included: 1) sql_scripts.sql - SQL scripts; 2) entity_relationship_diagram.pdf - entity relationship diagram of the database; 3) schine_student_center_DBMS.accdb - database application created with MS Access; 4) demo.pptx - demo slides of the project. 
